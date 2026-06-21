@@ -1,4 +1,25 @@
-// SCROLL ANIMATIONS
+// HAMBURGER MENU TOGGLE (mobile nav)
+const menuToggle = document.getElementById('menuToggle');
+const navList = document.getElementById('navList');
+
+if (menuToggle && navList) {
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('open');
+        navList.classList.toggle('nav-open');
+    });
+}
+
+// On mobile, tapping a dropdown parent (Our Church / Events) opens
+// its submenu instead of doing nothing
+document.querySelectorAll('.dropdown > a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        if (window.innerWidth <= 900) {
+            e.preventDefault();
+            this.parentElement.classList.toggle('active');
+        }
+    });
+});
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -37,10 +58,3 @@ if (video) {
     }, { threshold: 0.4 });
     videoObserver.observe(video);
 }
-
-
-
-
-
-
-

@@ -1,27 +1,78 @@
 
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: 0.3s ease;
+}
+
+/* Animate into an X when menu is open */
+.menu-toggle.open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 @media (max-width: 900px) {
 
     /* NAVBAR */
     nav {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         padding: 14px 20px;
-        gap: 14px;
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: flex;
     }
 
     .logo-section h2 {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .logo-section img {
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
     }
 
+    /* Hide the nav links by default on mobile */
     nav ul {
         flex-direction: column;
         gap: 0;
         width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: rgba(10,10,10,0.97);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+    }
+
+    /* Shown only when JS adds .nav-open */
+    nav ul.nav-open {
+        max-height: 600px;
     }
 
     nav ul li {
@@ -29,8 +80,9 @@
     }
 
     nav ul li a {
-        padding: 10px 0;
+        padding: 14px 20px;
         font-size: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     .dropdown-content {
@@ -43,20 +95,20 @@
         display: none;
     }
 
-    .dropdown:hover .dropdown-content,
     .dropdown.active .dropdown-content {
         display: block;
     }
 
     .dropdown-content a {
         color: white;
-        padding: 10px 14px;
+        padding: 10px 14px 10px 34px;
     }
 
     .nav-member-btn {
         padding: 10px 20px;
         font-size: 14px;
-        align-self: flex-start;
+        margin: 14px 20px;
+        text-align: center;
     }
 
     /* HERO SECTION */
@@ -507,9 +559,3 @@
         font-size: 14px;
     }
 }
-
-
-
-
-
-
